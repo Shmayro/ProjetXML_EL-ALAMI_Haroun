@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ENTITY % smstr SYSTEM "semestre.dtd">
+%smstr;
+
+<!ELEMENT parcours (ref-responsable+,abrev,nom,finalite,lieu+,description,semestre+,lsdebouches)>
+
+<!ELEMENT abrev (#PCDATA)>
+<!ELEMENT ref-responsable EMPTY>
+<!ATTLIST ref-responsable ref IDREF #REQUIRED>
+<!ELEMENT finalite (#PCDATA)>
+
+<!ELEMENT lsdebouches (p?,debouche*)>
+<!ELEMENT debouche (#PCDATA)>

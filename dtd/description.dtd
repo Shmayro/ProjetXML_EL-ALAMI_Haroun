@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT description (#PCDATA|p|ul|table)*>
+
+<!ELEMENT p (#PCDATA|b|i|a)*>
+<!ELEMENT b (#PCDATA)>
+<!ELEMENT i (#PCDATA)>
+
+<!ELEMENT a (#PCDATA)>
+<!ATTLIST a href CDATA #IMPLIED>
+
+<!ELEMENT ul (li)*>
+<!ELEMENT li (#PCDATA|p)*>
+
+<!ELEMENT table (tr)*>
+<!ELEMENT tr (td|th)*>
+<!ELEMENT td (#PCDATA)*>
+<!ELEMENT th (#PCDATA)*>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:include schemaLocation="semestre.xsd"/>
+
+  <xs:element name="parcours">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ref-responsable"/>
+        <xs:element ref="abrev"/>
+        <xs:element ref="nom"/>
+        <xs:element name="finalite">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Tronc commun"/>
+              <xs:enumeration value="Recherche"/>
+              <xs:enumeration value="Professionnelle"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element maxOccurs="unbounded" ref="lieu"/>
+        <xs:element ref="description"/>
+        <xs:element maxOccurs="unbounded" ref="semestre"/>
+        <xs:element maxOccurs="unbounded" ref="lsdebouches"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="abrev">
+    <xs:simpleType>
+      <xs:restriction base="xs:ID">
+        <xs:pattern value="[A-Z0-9]+"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+  <xs:element name="ref-responsable">
+    <xs:complexType>
+      <xs:attributeGroup ref="ref"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="lsdebouches">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="p"/>
+        <xs:element name="debouche" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

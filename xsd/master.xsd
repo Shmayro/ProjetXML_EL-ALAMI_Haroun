@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:include schemaLocation="description.xsd"/>
+  <xs:include schemaLocation="ue.xsd"/>
+  <xs:include schemaLocation="intervenant.xsd"/>
+  <xs:include schemaLocation="parcours.xsd"/>
+
+  <xs:attributeGroup name="id">
+    <xs:attribute name="id" use="required" type="xs:ID"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="ref">
+    <xs:attribute name="ref" use="required" type="xs:IDREF"/>
+  </xs:attributeGroup>
+
+  <xs:element name="master">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="list-intervenant"/>
+        <xs:element ref="list-ue"/>
+        <xs:element ref="list-parcours"/>
+      </xs:sequence>
+    </xs:complexType>
+
+
+    <!-- définition d'un index  pour UE-->
+    <xs:key name="ue.id">
+      <xs:selector xpath="list-ue/ue"/>
+      <!-- les éléments indexés -->
+      <xs:field xpath="@id"/>
+      <!-- la clef -->
+    </xs:key>
+    <!-- utilisation de cet index -->
+    <xs:keyref name="ref.ue.id" refer="ue.id">
+      <xs:selector xpath="list-parcours/parcours/semestre/bloc/ref-ue"/>
+      <xs:field xpath="@ref"/>
+    </xs:keyref>
+
+    <!-- définition d'un index pour Intervenants-->
+    <xs:key name="intervenant.id">
+      <xs:selector xpath="list-intervenant/intervenant"/>
+      <!-- les éléments indexés -->
+      <xs:field xpath="@id"/>
+      <!-- la clef -->
+    </xs:key>
+    <!-- utilisation de cet index -->
+    <xs:keyref name="ref-responsable.intervenant.id" refer="intervenant.id">
+      <xs:selector xpath="list-parcours/parcours/ref-responsable"/>
+      <xs:field xpath="@ref"/>
+    </xs:keyref>
+    <xs:keyref name="ref-intervenant.intervenant.id" refer="intervenant.id">
+      <xs:selector xpath="list-ue/ue/ref-intervenant"/>
+      <xs:field xpath="@ref"/>
+    </xs:keyref>
+
+    <!-- définition d'un index pour Parcours-->
+    <xs:key name="parc.id">
+      <xs:selector xpath="list-parcours/parcours"/>
+      <!-- les éléments indexés -->
+      <xs:field xpath="abrev"/>
+      <!-- la clef -->
+    </xs:key>
+
+
+  </xs:element>
+
+  <xs:element name="list-intervenant">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="intervenant"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="list-ue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="list-parcours">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="parcours"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

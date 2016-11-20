@@ -1,0 +1,172 @@
+declare option saxon:output "doctype-public=//W3C//DTD XHTML 1.0 Strict//EN";
+declare option saxon:output "doctype-system=http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd";
+declare option saxon:output "method=xml";
+declare option saxon:output "encoding=iso-8859-1";
+
+
+
+declare function local:intervenant($intervenant) {
+    
+    <div
+        class="panel panel-default">
+        <div
+            class="panel-heading">
+            <h3
+                class="panel-title"><a
+                    href="intervenant-{data($intervenant/@id)}.html">{data($intervenant/nom)}</a></h3>
+        </div>
+        <div
+            class="panel-body">
+            <div>
+                <b>Enseignements :</b>
+                <ul>
+                    {local:unites($intervenant)}
+                </ul>
+            </div>
+            <div>
+                <b>Parcours :</b>
+                <ul>
+                    {local:parcours($intervenant)}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+};
+
+declare function local:unites($intervenant) {
+    
+    let $ues := doc('masterf.xml')//ue[ref-intervenant/@ref = $intervenant/@id],
+        $count := count($ues)
+    return
+        
+        if ($count != 0) then
+            for $ue in $ues
+            order by $ue/nom
+            return
+                <li><a
+                        href="ue-{$ue/@id}.html">{data($ue/nom)}</a></li>
+        
+        else
+            <li>Aucune UE assignée</li>
+};
+
+declare function local:parcours($intervenant) {
+    
+    let $parcs := doc('masterf.xml')//parcours[ref-responsable/@ref = $intervenant/@id],
+        $count := count($parcs)
+    return
+        
+        if ($count != 0) then
+            for $parc in $parcs
+            order by $parc/nom
+            return
+                <li><a
+                        href="parcours-{$parc/abrev}.html">{data($parc/nom)}</a></li>
+        
+        else
+            <li>Aucun parcours assigné</li>
+};
+
+declare function local:content() {
+    
+    let $xml := doc('masterf.xml')//intervenant
+    
+    for $intervenant in $xml
+    order by $intervenant/nom
+    return
+        local:intervenant($intervenant)
+};
+
+<html
+    xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta
+            http-equiv="Content-Type"
+            content="text/html; charset=iso-8859-1"/>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"/>
+        <title>
+            Les intervenants du Master Informatique
+        </title>
+        
+        <link
+            href="../css/bootstrap.css"
+            rel="stylesheet"
+            type="text/css"/>
+        <link
+            href="../css/bootstrap-theme.css"
+            rel="stylesheet"
+            type="text/css"/>
+    </head>
+    <body>
+        <div
+            class="section">
+            <div
+                class="container">
+                <div
+                    class="row">
+                    <div
+                        class="col-md-12">
+                        <div
+                            class="page-header">
+                            <h1
+                                class="text-center">
+                                <small>
+                                </small>
+                                <br/>
+                                Les intervenants du Master Informatique
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="row">
+                    <div
+                        class="col-md-3">
+                        <div
+                            class="list-group">
+                            <a
+                                class="list-group-item list-group-item-success"
+                                href="index.html">Parcours (Acceuil)</a>
+                            <a
+                                class="list-group-item list-group-item-info"
+                                href="unites.html">Les unités</a>
+                            <a
+                                class="list-group-item list-group-item-warning"
+                                href="intervenants.html">Les intervenants</a>
+                            <a
+                                class="list-group-item list-group-item-danger"
+                                href="xq.html">Requête XQuery</a>
+                            <a
+                                class="list-group-item "
+                                target="_blank"
+                                href="../listues.xml">Dom généré avec XQuery</a>
+                        </div>
+                        <div
+                            style="text-align: center;">
+                            <img
+                                src="../img/logo.png"
+                                width="150px"
+                                alt=""/>
+                            <br/>
+                            <b>(<a
+                                    target="_blank"
+                                    href="http://haroun.tk">Haroun El Alami</a> © 2016)</b>
+                            <br/>
+                            <a
+                                class="btn btn-primary"
+                                href="../documentation.html"
+                                role="button">Documentation</a>
+                        </div>
+                    </div>
+                    <div
+                        class="col-md-9">
+                        {local:content()}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

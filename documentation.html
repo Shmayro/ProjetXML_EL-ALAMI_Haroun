@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Documentation</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="page-header">
+              <h1 class="text-center">
+                <small>Documentation</small><br /> Projet Xml 2016</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="list-group">
+              <a class="list-group-item list-group-item-success" href="www/index.html">Parcours
+                (Acceuil)</a>
+              <a class="list-group-item list-group-item-info" href="www/unites.html">Les
+                unit&#233;s</a>
+              <a class="list-group-item list-group-item-warning" href="www/intervenants.html">Les
+                intervenants</a>
+              <a class="list-group-item list-group-item-danger" href="www/xq.html">Requ&#234;te
+                XQuery</a>
+              <a class="list-group-item" target="_blank" href="listues.xml">Dom
+                g&#233;n&#233;r&#233; avec XQuery</a>
+            </div>
+            <div style="text-align: center;">
+              <img src="img/logo.png" width="150px" alt="" /><br />
+              <b>(<a target="_blank" href="http://haroun.tk">Haroun El Alami</a> &#169; 2016)</b><br />
+              <a class="btn btn-primary" href="documentation.html" role="button">Documentation</a>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div xmlns="" class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Présentation</h3>
+              </div>
+              <div class="panel-body">
+                <p>L'objectif du projet est de réaliser un site web en se basant sur un <a
+                    href="http://masterinfo.univ-mrs.fr/" target="_blank"><b>site web des masters de
+                      l'université des Aix-Marseille</b></a> déjà existant.</p>
+                <p>
+                  <b>le Travail a faire:</b>
+                  <ol>
+                    <li>
+                      <p>Réaliser une base de données sous format XML , qui décrit le mieux possible
+                        l'ensemble des infos sur les intervenants, les parcours et l'ensemble des
+                        unités d'enseignements.</p>
+                      <p>il faut prévoir une DTD et une schéma xsd qui permettront de valider le
+                        contenue du fichier Xml</p>
+                      <p>La base de données du site existant a été fournie, donc il faut prévoir une
+                        transformation vers une structure valide pour ce projet</p>
+                    </li>
+                    <li>
+                      <p>Réaliser un XSLT (version 2.0) affin de générer les pages du nouveau
+                        site.</p>
+                    </li>
+                    <li>
+                      <p>Réaliser une requête XQuery pour extraire toutes les infos sur les parcours
+                        en responsabilité et les unité d'enseignement assurées pour tout les
+                        intervenants.</p>
+                    </li>
+                    <li>
+                      <p>Réaliser un code java qui permet de extraire les nom des unités
+                        d'enseignements et retourner le résultat sur la sortie standard sous le
+                        format d'un fichier XML</p>
+                    </li>
+                    <li>
+                      <p>un Makefile pour le projet</p>
+                    </li>
+                  </ol>
+                </p>
+              </div>
+            </div>
+            <div xmlns="" class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Structure du projet</h3>
+              </div>
+              <div class="panel-body">
+                <ul>
+                  <li><b>masterf.xml :</b> base de données sous format XML</li>
+                  <li><b>dtd/master.dtd :</b> dtd qui permet de valider le fichier masterf.xml</li>
+                  <li><b>xsd/master.xsd :</b> schéma XSD qui permet de valider le fichier
+                    masterf.xml</li>
+                  <li><b>xsl/master.xsl :</b> XSLT (version 2.0) qui génère les pages du site</li>
+                  <li><b>css/ :</b> feuilles de style du site (Bootstrap)</li>
+                  <li><b>img/ :</b> images du site (un logo de l'université des Aix-Marseille)</li>
+                  <li><b>xq.txt :</b> requête XQuery pour extraire toutes les infos sur les parcours
+                    en responsabilité et les unité d'enseignement assurées pour tout les
+                    intervenants.</li>
+                  <li><b>java/MakeDom.java :</b> code java qui permet de extraire les nom des unités
+                    d'enseignements et retourner le résultat sur la sortie standard sous le format
+                    d'un fichier XML.</li>
+                  <li><b>saxon9pe.java :</b> outil saxon</li>
+                  <li><b>Makefile :</b> fichier qui offres plusieurs options (voir partie
+                    utilisation)</li>
+                  <li><b>documentation.html :</b> cette page :D</li>
+                </ul>
+              </div>
+            </div>
+            <div xmlns="" class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Utilisation</h3>
+              </div>
+              <div class="panel-body">
+                <div class="alert alert-warning">
+                  <strong>Warning!</strong> vérifier que packet <b>tidy</b> est installé sur votre
+                  machine </div>
+                <p>Avec le Makefile, il est possible de générer le site web plus un ensemble
+                  taches.</p>
+                <p>vous devez dabord ouvrir le terminal et vous placez sur le répertoire racine du
+                  projet ou se trouve le fichier Makefile.</p>
+                <p>Maintenant vous pouvez exécuter la commande <b>make all</b> et attendre que le
+                  site s'affiche sur votre navigateur préféré :D </p>
+                <p>Si vous êtes si curieux voici toutes les Commandes Disponible:</p>
+                <ul>
+                  <li><b>make all:</b> exécute les tache sur cette ordre => reset dtd xsd javap web
+                    xq tidy open </li>
+                  <li><b>make web:</b> Création du contenu du dossier www/ (les page web pour chacun
+                    des intervenants, des parcours et l'ensemble des unités d'enseignements )</li>
+                  <li><b>make dtd:</b> Validation du masterf.xml avec la DTD</li>
+                  <li><b>make xsd:</b> Validation du masterf.xml avec la schéma</li>
+                  <li><b>make xq:</b> Création du résultat de la requête XQuery => création du
+                    fichier www/xq.html</li>
+                  <li><b>make tidy:</b> Validation des fichiers www./*.html</li>
+                  <li><b>make javap:</b> Création du fichier listues.xml contenant l'ensemble des
+                    UEs</li>
+                  <li><b>make reset:</b> Nettoyer le projet en exécutant l'ensemble des commandes
+                    suivantes: <ul>
+                      <li>rm -rf www/*</li>
+                      <li>rm -rf www</li>
+                      <li>rm -rf listues.xml</li>
+                      <li>rm -rf java/*.class</li>
+                    </ul>
+                  </li>
+                  <li><b>make open:</b> Afficher le site sur votre Navigateur par défaut</li>
+                </ul>
+              </div>
+            </div>
+            <div xmlns="" class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Outils Utilisés</h3>
+              </div>
+              <div class="panel-body">
+                <ul>
+                  <li>sublimetext</li>
+                  <li>oxygen xml editor</li>
+                  <li>eclipse</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

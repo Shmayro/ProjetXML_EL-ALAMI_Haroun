@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  
+  <xs:element name="description">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="p"/>
+        <xs:element ref="ul"/>
+        <xs:element ref="table"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="p">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="b" type="xs:string"/>
+        <xs:element name="i" type="xs:string"/>
+        <xs:element name="a">
+          <xs:complexType mixed="true">
+            <xs:attribute name="href" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  
+
+  <xs:element name="ul">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="li" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType mixed="true">
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" ref="p"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="table">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="tr" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="td" type="xs:string"/>
+              <xs:element name="th" type="xs:string"/>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

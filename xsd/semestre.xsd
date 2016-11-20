@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:element name="semestre">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="nom"/>
+        <xs:element maxOccurs="unbounded" ref="bloc"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="bloc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="role"/>
+          <xs:element name="nbr_credit" type="xs:integer"/>
+        </xs:choice>
+        <xs:element maxOccurs="unbounded" ref="ref-ue"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ref-ue">
+    <xs:complexType>
+      <xs:attributeGroup ref="ref"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="role">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Obligatoire"/>
+        <xs:enumeration value="Bonus"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>

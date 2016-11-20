@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!ELEMENT semestre (nom,bloc+)>
+<!ELEMENT bloc ((role|nbr_credit),ref-ue+)>
+<!ELEMENT ref-ue EMPTY>
+<!ATTLIST ref-ue ref IDREF #REQUIRED>
+<!ELEMENT role (#PCDATA)>
+<!ELEMENT nbr_credit (#PCDATA)>

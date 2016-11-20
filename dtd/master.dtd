@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ENTITY % desc SYSTEM "description.dtd">
+%desc;
+<!ENTITY % ue SYSTEM "ue.dtd">
+%ue;
+<!ENTITY % i SYSTEM "intervenant.dtd">
+%i;
+<!ENTITY % p SYSTEM "parcours.dtd">
+%p;
+
+<!ELEMENT master (list-intervenant,list-ue,list-parcours) >
+<!ELEMENT list-intervenant (intervenant*) >
+<!ELEMENT list-ue (ue*) >
+<!ELEMENT list-parcours (parcours*) >
+
+<!ENTITY % luminy "Luminy">
+<!ENTITY % stjerome "Saint Jerome">

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!ELEMENT ue (nom,credits,description,plan?,ref-intervenant*,lieu*)>
+
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT credits (#PCDATA)>
+
+<!ELEMENT plan (cours?,td?,tp?)>
+<!ELEMENT cours (#PCDATA)>
+<!ELEMENT tp (#PCDATA)>
+
+<!ELEMENT ref-intervenant EMPTY>
+<!ATTLIST ref-intervenant ref IDREF #REQUIRED>
+
+<!ELEMENT lieu (#PCDATA)>
+
+<!ATTLIST ue id ID #REQUIRED>

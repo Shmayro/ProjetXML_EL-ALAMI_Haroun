@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:element name="ue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="nom"/>
+        <xs:element ref="credits"/>
+        <xs:element ref="description"/>
+        <xs:element minOccurs="0" ref="plan"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ref-intervenant"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="lieu"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="id"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="nom" type="xs:string"/>
+  <xs:element name="credits" type="xs:integer"/>
+
+  <xs:element name="plan">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="cours" type="xs:integer" minOccurs="0"/>
+        <xs:element name="td" type="xs:integer" minOccurs="0"/>
+        <xs:element name="tp" type="xs:integer" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="ref-intervenant">
+    <xs:complexType>
+      <xs:attributeGroup ref="ref"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="lieu">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Luminy"/>
+        <xs:enumeration value="Saint-Jérome"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+
+</xs:schema>
