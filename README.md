@@ -1,4 +1,4 @@
-# ProjetXML_EL-ALAMI_Haroun
+# ProjetXML EL ALAMI Haroun
 L'objectif du projet est de réaliser un site web en se basant sur un **[site web des masters de l'université des Aix-Marseille](http://masterinfo.univ-mrs.fr/)** déjà existant.
 ## le Travail a faire: 
 1. Réaliser une base de données sous format XML , qui décrit le mieux possible l'ensemble des infos sur les intervenants, les parcours et l'ensemble des unités d'enseignements.
